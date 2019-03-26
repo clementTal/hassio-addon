@@ -10,9 +10,9 @@ COPY run-ssh.sh /
 
 ARG BUILD_ARCH
 
-RUN echo nameserver 1.1.1.1 > /etc/resolv.conf \
-    && apt update \
-    && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server supervisor
+
+RUN apt update 
+RUN apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server supervisor
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN if [ "$BUILD_ARCH" = "amd64" ]; then bash -c 'echo "deb https://debian.snips.ai/stretch stable main" > /etc/apt/sources.list.d/snips.list' \
