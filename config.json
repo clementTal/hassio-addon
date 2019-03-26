@@ -1,6 +1,6 @@
 {
   "name": "CLEMs_Snips.AI",
-  "version": "5.13",
+  "version": "5.16",
   "slug": "snips",
   "description": "Local voice control platform",
   "url": "https://home-assistant.io/addons/snips/",
@@ -12,6 +12,9 @@
   "audio": true,
   "services": ["mqtt:need"],
   "homeassistant_api": true,
+  "ports": {
+    "22/tcp": 6622
+  },
   "options": {
     "assistant": "assistant.zip",
     "language": "fr",
