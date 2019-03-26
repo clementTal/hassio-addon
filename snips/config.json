@@ -42,6 +42,6 @@
       "login": "str",
       "password": "str"
     }
-  }
+  },
   "image": "clemtal/snips-hassio"
 }
