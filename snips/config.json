@@ -1,0 +1,47 @@
+{
+  "name": "CLEMs_Snips.AI",
+  "version": "1.0",
+  "slug": "snips-hassio",
+  "description": "Local voice control platform",
+  "url": "https://home-assistant.io/addons/snips/",
+  "arch": ["armhf"],
+  "startup": "application",
+  "boot": "auto",
+  "map": ["share"],
+  "tmpfs": "size=10m",
+  "audio": true,
+  "services": ["mqtt:need"],
+  "homeassistant_api": true,
+  "ports": {
+    "22/tcp": 6622
+  },
+  "options": {
+    "assistant": "assistant.zip",
+    "language": "fr",
+    "custom_tts": {
+      "active": false,
+      "platform": "google"
+    },
+    "use_voice_serveur": false,
+    "ssh": {
+      "enabled": true,
+      "login": "root",
+      "password": "password"
+    }
+  },
+  "schema": {
+    "assistant": "str",
+    "language": "match(en|de|fr)",
+    "custom_tts": {
+      "active": "bool",
+      "platform": "str"
+    },
+    "use_voice_serveur": "bool",
+    "ssh": {
+      "enabled": "bool",
+      "login": "str",
+      "password": "str"
+    }
+  }
+},
+"image": "clemtal/snips-hassio"
