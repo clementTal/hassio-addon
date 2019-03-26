@@ -7,8 +7,7 @@ COPY mosquitto.conf /etc/
 COPY customtts.sh /usr/bin
 COPY snips-entrypoint.sh /
 
-ARG BUILD_ARCH
-
+RUN apt-get update
 RUN apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata
 RUN rm -rf /var/lib/apt/lists/*
 RUN bash -c 'echo "deb https://raspbian.snips.ai/stretch stable main" > /etc/apt/sources.list.d/snips.list'
