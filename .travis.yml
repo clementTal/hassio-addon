@@ -1,9 +1,13 @@
-language: ruby
+sudo: required
 
 services:
-  - docker
+- docker
+
+language: bash
 
 script:
+# prepare qemu
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t snips-hassio .
   - docker images
