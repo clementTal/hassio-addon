@@ -13,7 +13,7 @@
   "services": ["mqtt:need"],
   "homeassistant_api": true,
   "ports": {
-    "22/tcp": 6622
+    "22/tcp": 22
   },
   "options": {
     "assistant": "assistant.zip",
@@ -43,5 +43,5 @@
       "password": "str"
     }
   }
+  "image": "clemtal/snips-hassio"
 }
-"image": "clemtal/snips-hassio"
