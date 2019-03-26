@@ -14,6 +14,10 @@ then
     exit 1
 fi
 
+echo "==================================="
+echo "---------- CONFIG SNIPS -----------"
+echo "==================================="
+
 CONFIG_PATH=/data/options.json
 
 VOICE_SERVEUR=$(jq --raw-output '.use_voice_serveur' $CONFIG_PATH)
@@ -212,13 +216,6 @@ do
         SNIPS_MOSQUITTO_FLAG="-h $SNIPS_MQTT_HOST -p $SNIPS_MQTT_PORT"
     fi
 done
-
-# Generate global configuration
-cat <<EOT > $SUPERVISORD_CONF_FILE
-[supervisord]
-nodaemon=true
-
-EOT
 
 # Generate snips-asr-google
 if [ "${SNIPS_COMPONENTS['snips-asr-google']}" = true ]

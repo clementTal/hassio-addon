@@ -4,6 +4,9 @@ SSH_ENABLED=$(jq --raw-output '.ssh.enabled' $CONFIG_PATH)
 SSH_LOGIN=$(jq --raw-output '.ssh.login' $CONFIG_PATH)
 SSH_PASSWORD=$(jq --raw-output '.ssh.password' $CONFIG_PATH)
 
+echo "==================================="
+echo "----------- CONFIG SSH ------------"
+echo "==================================="
 
 mkdir /var/run/sshd
 echo "SSH config: $SSH_LOGIN:$SSH_PASSWORD"
@@ -15,6 +18,13 @@ sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' 
 
 echo "export VISIBLE=now" >> /etc/profile
 
+# Generate global configuration
+cat <<EOT > $SUPERVISORD_CONF_FILE
+[supervisord]
+nodaemon=true
+
+EOT
+
 if [ "${SSH_ENABLED}" = true ]
 then
     cat <<EOT >> $SUPERVISORD_CONF_FILE
@@ -25,3 +35,5 @@ EOT
 else
     echo "SSH is disabled"
 fi
+
+sleep 10

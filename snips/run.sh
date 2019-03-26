@@ -100,5 +100,5 @@ echo "[INFO] Starting snips-watch"
 /usr/bin/snips-nlu --version
 /usr/bin/snips-skill-server --version
 
-/snips-entrypoint.sh --mqtt localhost:1883
 /run-ssh.sh
+/snips-entrypoint.sh --mqtt localhost:1883

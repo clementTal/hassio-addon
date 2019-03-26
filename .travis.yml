@@ -5,11 +5,16 @@ services:
 
 language: bash
 
-script:
-# prepare qemu
-  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t snips-hassio .
-  - docker images
-  - docker tag snips-hassio $DOCKER_USERNAME/snips-hassio
-  - docker push $DOCKER_USERNAME/snips-hassio
+jobs:
+  include:
+    - stage: docker build
+      if: type == pull_request OR branch = master
+      script:
+        - cd ./snips
+        - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+        - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        - docker build -t snips-hassio .
+        - docker images
+        - docker tag snips-hassio clemtal/snips-hassio
+        - docker push clemtal/snips-hassio
+    
