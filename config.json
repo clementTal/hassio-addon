@@ -1,7 +1,7 @@
 {
   "name": "CLEMs_Snips.AI",
-  "version": "5.19",
-  "slug": "snips",
+  "version": "1.0",
+  "slug": "snips-hassio",
   "description": "Local voice control platform",
   "url": "https://home-assistant.io/addons/snips/",
   "arch": ["armhf"],
