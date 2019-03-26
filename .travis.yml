@@ -11,7 +11,7 @@ jobs:
       if: type == pull_request OR branch = master
       script:
         - cd ./snips
-        #- docker run --rm --privileged multiarch/qemu-user-static:register --reset
+        - docker run --rm --privileged multiarch/qemu-user-static:register --reset
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t snips-hassio .
         - docker images
