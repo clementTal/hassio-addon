@@ -1,14 +1,11 @@
-sudo: required
+language: ruby
 
 services:
   - docker
 
-jobs:
-  include:
-    - stage: build docker image
-      script:
-      - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t snips-hassio .
-      - docker images
-      - docker tag snips-hassio $DOCKER_USERNAME/snips-hassio
-      - docker push $DOCKER_USERNAME/snips-hassio
+script:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t snips-hassio .
+  - docker images
+  - docker tag snips-hassio $DOCKER_USERNAME/snips-hassio
+  - docker push $DOCKER_USERNAME/snips-hassio
