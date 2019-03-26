@@ -14,6 +14,10 @@ then
     exit 1
 fi
 
+CONFIG_PATH=/data/options.json
+
+VOICE_SERVEUR=$(jq --raw-output '.use_voice_serveur' $CONFIG_PATH)
+
 SUPERVISORD_CONF_FILE="/etc/supervisor/conf.d/supervisord.conf"
 ASR_TYPE=$(jq --raw-output '.asr.type' $ASSISTANT_FILE)
 ANALYTICS_ENABLED=$(jq --raw-output '.analyticsEnabled' $ASSISTANT_FILE)
@@ -93,6 +97,10 @@ then
     SNIPS_COMPONENTS["snips-analytics"]=false
 fi
 
+if [ "$VOICE_SERVEUR" != "true" ]
+then
+    SNIPS_COMPONENTS["snips-audio-server"]=false
+fi
 
 for i in $(seq 1 $#)
 do
@@ -211,7 +219,6 @@ cat <<EOT > $SUPERVISORD_CONF_FILE
 nodaemon=true
 
 EOT
-
 
 # Generate snips-asr-google
 if [ "${SNIPS_COMPONENTS['snips-asr-google']}" = true ]
@@ -398,7 +405,7 @@ fi
 
 if [ "${USE_INTERNAL_MQTT}" = true ]
 then
-    service mosquitto start
+    service mosquitto start &
     sleep 2
 fi
 

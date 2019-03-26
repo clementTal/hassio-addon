@@ -1,6 +1,6 @@
 {
   "name": "CLEMs_Snips.AI",
-  "version": "5.16",
+  "version": "5.19",
   "slug": "snips",
   "description": "Local voice control platform",
   "url": "https://home-assistant.io/addons/snips/",
@@ -22,7 +22,12 @@
       "active": false,
       "platform": "google"
     },
-    "use_voice_serveur": false
+    "use_voice_serveur": false,
+    "ssh": {
+      "enabled": true,
+      "login": "root",
+      "password": "password"
+    }
   },
   "schema": {
     "assistant": "str",
@@ -31,6 +36,11 @@
       "active": "bool",
       "platform": "str"
     },
-    "use_voice_serveur": "bool"
+    "use_voice_serveur": "bool",
+    "ssh": {
+      "enabled": "bool",
+      "login": "str",
+      "password": "str"
+    }
   }
 }

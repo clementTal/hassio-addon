@@ -6,7 +6,6 @@ CONFIG_PATH=/data/options.json
 ASSISTANT=$(jq --raw-output '.assistant' $CONFIG_PATH)
 LANG=$(jq --raw-output '.language // "en"' $CONFIG_PATH)
 CUSTOMTTS=$(jq --raw-output '.custom_tts.active' $CONFIG_PATH)
-VOICE_SERVEUR=$(jq --raw-output '.use_voice_serveur' $CONFIG_PATH)
 MQTT_CONFIG=
 
 echo "[INFO] LANG: ${LANG}"
@@ -77,30 +76,24 @@ echo "[INFO] Checking for updated ${ASSISTANT} in /share"
 # check if a new assistant file exists
 if [ -f "/share/${ASSISTANT}" ]; then
     echo "[INFO] Install/Update snips assistant"
-    rm -rf /usr/share/snips/assistant
-    unzip -o -u "/share/${ASSISTANT}" -d /usr/share/snips
+    rm -rf /usr/share/snips/assistant &
+    unzip -o -u "/share/${ASSISTANT}" -d /usr/share/snips &
 # otherwise use the default
 else
     echo "[INFO] Checking for /assistant_Hass_${LANG}.zip"
     if [ -f "/assistant_Hass_${LANG}.zip" ]; then
         echo "[INFO] - Using default assistant_Hass_${LANG}.zip"
-        rm -rf /usr/share/snips/assistant
-        unzip -o -u "/assistant_Hass_${LANG}.zip" -d /usr/share/snips
+        rm -rf /usr/share/snips/assistant &
+        unzip -o -u "/assistant_Hass_${LANG}.zip" -d /usr/share/snips &
     else
         echo "[ERROR] Could not find assistant!"
     fi
-fi
-
-if [ "${VOICE_SERVEUR}" == "false" ]; then
-  service snips-audio-server stop
 fi
   
 echo "[INFO] Starting snips-watch"
 ( sleep 2; /usr/bin/snips-watch -vvv --no_color ) &
 
-if [ "${VOICE_SERVEUR}" == "true" ]; then
-  /usr/bin/snips-audio-server --version
-fi
+/usr/bin/snips-audio-server --version
 /usr/bin/snips-asr --version
 /usr/bin/snips-dialogue --version
 /usr/bin/snips-hotword --version
@@ -108,3 +101,4 @@ fi
 /usr/bin/snips-skill-server --version
 
 /snips-entrypoint.sh --mqtt localhost:1883
+/run-ssh.sh
