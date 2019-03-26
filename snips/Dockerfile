@@ -2,10 +2,10 @@ ARG BUILD_FROM
 FROM homeassistant/armhf-base-raspbian:stretch
 
 # Copy data
-COPY run.sh /
-COPY mosquitto.conf /etc/
-COPY customtts.sh /usr/bin
-COPY snips-entrypoint.sh /
+COPY snips/run.sh /
+COPY snips/mosquitto.conf /etc/
+COPY snips/customtts.sh /usr/bin
+COPY snips/snips-entrypoint.sh /
 
 RUN apt-get update
 RUN apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server supervisor
