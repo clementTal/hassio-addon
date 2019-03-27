@@ -12,7 +12,7 @@ COPY run-ssh.sh /
 
 
 RUN apt update 
-RUN apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server supervisor
+RUN apt-get install -y mosquitto dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server supervisor
 
 RUN rm -rf /var/lib/apt/lists/*
 
