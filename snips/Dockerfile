@@ -1,5 +1,5 @@
 ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM resin/rpi-raspbian
 
 # Copy data
 COPY run.sh /
