@@ -17,5 +17,6 @@ jobs:
         - docker images
         - docker tag snips-hassio clemtal/snips-hassio:1.2
         - docker push clemtal/snips-hassio:1.2
+        - docker tag snips-hassio clemtal/snips-hassio
         - docker push clemtal/snips-hassio
     
