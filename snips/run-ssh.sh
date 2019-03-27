@@ -4,6 +4,8 @@ SSH_ENABLED=$(jq --raw-output '.ssh.enabled' $CONFIG_PATH)
 SSH_LOGIN=$(jq --raw-output '.ssh.login' $CONFIG_PATH)
 SSH_PASSWORD=$(jq --raw-output '.ssh.password' $CONFIG_PATH)
 
+SUPERVISORD_CONF_FILE="/etc/supervisor/conf.d/supervisord.conf"
+
 echo "==================================="
 echo "----------- CONFIG SSH ------------"
 echo "==================================="
