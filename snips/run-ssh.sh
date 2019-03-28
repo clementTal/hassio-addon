@@ -31,11 +31,12 @@ if [ "${SSH_ENABLED}" = true ]
 then
     cat <<EOT >> $SUPERVISORD_CONF_FILE
 [program:sshd]
-command=/usr/sbin/sshd -D
+command=/usr/sbin/sshd -D -e
+autorestart=true
 
 EOT
 else
     echo "SSH is disabled"
 fi
 
-sleep 10
+tail -f /data/debian-base/log/*.log

@@ -1,6 +1,8 @@
 ARG BUILD_FROM
 FROM raspbian/stretch
 
+ENV INITRD No
+
 # Copy data
 COPY run.sh /
 COPY mosquitto.conf /etc/
@@ -13,6 +15,14 @@ RUN echo nameserver 1.1.1.1 > /etc/resolv.conf \
     && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server
 
 RUN rm -rf /var/lib/apt/lists/*
+
+RUN mkdir -p /var/run/sshd
+RUN chmod 0755 /var/run/sshd
+
+ADD sshd_config /etc/ssh/sshd_config
+ADD sshd.conf /etc/supervisor/conf.d/sshd.conf
+
+RUN mkdir -p /data /data/debian-base /data/debian-base/log
 
 
 RUN bash -c 'echo "deb https://raspbian.snips.ai/stretch stable main" > /etc/apt/sources.list.d/snips.list'
