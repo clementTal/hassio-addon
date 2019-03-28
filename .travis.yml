@@ -11,12 +11,12 @@ jobs:
       if: type == pull_request OR branch = master
       script:
         - cd ./snips
-        #- docker run --rm --privileged multiarch/qemu-user-static:register --reset
+        - docker run --rm --privileged multiarch/qemu-user-static:register --reset
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t snips-hassio .
         - docker images
-        - docker tag snips-hassio clemtal/snips-hassio:1.2-test
-        - docker push clemtal/snips-hassio:1.2-test
-        #- docker tag snips-hassio clemtal/snips-hassio
-        #- docker push clemtal/snips-hassio
+        - docker tag snips-hassio clemtal/snips-hassio:1.2
+        - docker push clemtal/snips-hassio:1.2
+        - docker tag snips-hassio clemtal/snips-hassio
+        - docker push clemtal/snips-hassio
     
