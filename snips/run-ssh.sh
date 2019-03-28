@@ -10,10 +10,8 @@ echo "==================================="
 echo "----------- CONFIG SSH ------------"
 echo "==================================="
 
-mkdir /var/run/sshd
 echo "SSH config: $SSH_LOGIN:$SSH_PASSWORD"
 echo "$SSH_LOGIN:$SSH_PASSWORD" | chpasswd
-sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
 sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -31,12 +29,10 @@ if [ "${SSH_ENABLED}" = true ]
 then
     cat <<EOT >> $SUPERVISORD_CONF_FILE
 [program:sshd]
-command=/usr/sbin/sshd -D -e
+command=/usr/sbin/sshd-D -ddd -e
 autorestart=true
 
 EOT
 else
     echo "SSH is disabled"
 fi
-
-tail -f /data/debian-base/log/*.log
