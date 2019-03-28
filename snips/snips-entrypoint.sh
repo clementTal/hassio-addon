@@ -407,4 +407,4 @@ then
 fi
 
 export RUMQTT_READ_TIMEOUT_MS=50
-/usr/bin/supervisord -c $SUPERVISORD_CONF_FILE
+#/usr/bin/supervisord -c $SUPERVISORD_CONF_FILE
