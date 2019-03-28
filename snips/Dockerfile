@@ -10,8 +10,7 @@ COPY customtts.sh /usr/bin
 COPY snips-entrypoint.sh /
 COPY run-ssh.sh /
 
-RUN echo nameserver 1.1.1.1 > /etc/resolv.conf \
-    && apt update \
+RUN apt update \
     && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server
 
 RUN rm -rf /var/lib/apt/lists/*
@@ -20,7 +19,7 @@ RUN mkdir -p /var/run/sshd
 RUN chmod 0755 /var/run/sshd
 
 ADD sshd_config /etc/ssh/sshd_config
-ADD sshd.conf /etc/supervisor/conf.d/sshd.conf
+#ADD sshd.conf /etc/supervisor/conf.d/sshd.conf
 
 RUN mkdir -p /data /data/debian-base /data/debian-base/log
 
