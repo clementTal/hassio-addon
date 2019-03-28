@@ -30,7 +30,6 @@ then
     cat <<EOT >> $SUPERVISORD_CONF_FILE
 [program:sshd]
 command=/usr/sbin/sshd-D -ddd -e
-autorestart=true
 
 EOT
 else
