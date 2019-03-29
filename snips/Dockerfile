@@ -19,7 +19,6 @@ RUN mkdir -p /var/run/sshd
 RUN chmod 0755 /var/run/sshd
 
 ADD sshd_config /etc/ssh/sshd_config
-#ADD sshd.conf /etc/supervisor/conf.d/sshd.conf
 
 RUN mkdir -p /data /data/debian-base /data/debian-base/log
 
@@ -28,13 +27,13 @@ RUN bash -c 'echo "deb https://raspbian.snips.ai/stretch stable main" > /etc/apt
 RUN apt-key adv --keyserver pgp.surfnet.nl --recv-keys D4F50CDCA10A2849; 
 
 
-RUN apt-get update
-RUN apt-get install -y snips-platform-voice snips-skill-server snips-analytics snips-asr snips-audio-server snips-dialogue snips-hotword snips-nlu snips-tts snips-watch snips-template  
-RUN rm -rf /var/lib/apt/lists/* 
-RUN chmod a+x /run.sh 
-RUN chmod a+x /usr/bin/customtts.sh 
-RUN chmod a+x /snips-entrypoint.sh 
-RUN chmod a+x /run-ssh.sh 
+RUN apt-get update \
+    && apt-get install -y snips-platform-voice snips-skill-server snips-analytics snips-asr snips-audio-server snips-dialogue snips-hotword snips-nlu snips-tts snips-watch snips-template  \
+    && rm -rf /var/lib/apt/lists/* \
+    && chmod a+x /run.sh \
+    && chmod a+x /usr/bin/customtts.sh \
+    && chmod a+x /snips-entrypoint.sh \
+    && chmod a+x /run-ssh.sh \
 
 RUN curl -L -o /assistant_Hass_de.zip https://s3.amazonaws.com/hassio-addons-data/assistant_Hass_de.zip 
 RUN curl -L -o /assistant_Hass_en.zip https://s3.amazonaws.com/hassio-addons-data/assistant_Hass_en.zip 

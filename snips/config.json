@@ -1,6 +1,6 @@
 {
   "name": "CLEMs_Snips.AI",
-  "version": "1.3",
+  "version": "1.4",
   "slug": "snips-hassio",
   "description": "Local voice control platform",
   "url": "https://home-assistant.io/addons/snips/",
@@ -13,7 +13,8 @@
   "services": ["mqtt:need"],
   "homeassistant_api": true,
   "ports": {
-    "22/tcp": 22
+    "22/tcp": 22,
+    "9001/tcp": 9001
   },
   "options": {
     "assistant": "assistant.zip",
