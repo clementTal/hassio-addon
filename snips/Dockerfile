@@ -33,7 +33,7 @@ RUN apt-get update \
     && chmod a+x /run.sh \
     && chmod a+x /usr/bin/customtts.sh \
     && chmod a+x /snips-entrypoint.sh \
-    && chmod a+x /run-ssh.sh \
+    && chmod a+x /run-ssh.sh
 
 RUN curl -L -o /assistant_Hass_de.zip https://s3.amazonaws.com/hassio-addons-data/assistant_Hass_de.zip 
 RUN curl -L -o /assistant_Hass_en.zip https://s3.amazonaws.com/hassio-addons-data/assistant_Hass_en.zip 
