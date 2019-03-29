@@ -24,7 +24,7 @@ RUN mkdir -p /data /data/debian-base /data/debian-base/log
 
 
 RUN bash -c 'echo "deb https://raspbian.snips.ai/stretch stable main" > /etc/apt/sources.list.d/snips.list'
-RUN apt-key adv --keyserver pgp.surfnet.nl --recv-keys D4F50CDCA10A2849; 
+RUN apt-key adv --keyserver gpg.mozilla.org --recv-keys D4F50CDCA10A2849; 
 
 
 RUN apt-get update \
