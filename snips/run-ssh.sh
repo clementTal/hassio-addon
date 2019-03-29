@@ -34,7 +34,7 @@ if [ "${SSH_ENABLED}" = true ]
 then
     cat <<EOT >> $SUPERVISORD_CONF_FILE
 [program:sshd]
-command=/usr/sbin/sshd-D -ddd -e
+command=/usr/sbin/sshd -D -ddd -e
 autostart=true
 autorestart=true
 startretries=20
