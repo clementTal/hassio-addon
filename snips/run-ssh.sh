@@ -4,6 +4,9 @@ SSH_ENABLED=$(jq --raw-output '.ssh.enabled' $CONFIG_PATH)
 SSH_LOGIN=$(jq --raw-output '.ssh.login' $CONFIG_PATH)
 SSH_PASSWORD=$(jq --raw-output '.ssh.password' $CONFIG_PATH)
 
+SUPERVISORD_LOGIN$(jq --raw-output '.supervisord.login' $CONFIG_PATH)
+SUPERVISORD_PASSWORD$(jq --raw-output '.supervisord.password' $CONFIG_PATH)
+
 SUPERVISORD_CONF_FILE="/etc/supervisor/conf.d/supervisord.conf"
 
 echo "==================================="
@@ -25,8 +28,8 @@ nodaemon=true
 
 [inet_http_server]
 port      = :9001
-username  = elao
-password  = boumbo
+username  = "$SUPERVISORD_LOGIN"
+password  = "$SUPERVISORD_PASSWORD"
 
 EOT
 
@@ -43,3 +46,5 @@ EOT
 else
     echo "SSH is disabled"
 fi
+
+selinux-activate

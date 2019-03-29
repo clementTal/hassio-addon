@@ -1,6 +1,6 @@
 {
   "name": "CLEMs_Snips.AI",
-  "version": "1.4",
+  "version": "1.5",
   "slug": "snips-hassio",
   "description": "Local voice control platform",
   "url": "https://home-assistant.io/addons/snips/",
@@ -28,6 +28,10 @@
       "enabled": true,
       "login": "root",
       "password": "password"
+    },
+    "supervisord": {
+      "login": "login",
+      "password": "password"
     }
   },
   "schema": {
@@ -40,6 +44,10 @@
     "use_voice_serveur": "bool",
     "ssh": {
       "enabled": "bool",
+      "login": "str",
+      "password": "str"
+    },
+    "supervisord": {
       "login": "str",
       "password": "str"
     }

@@ -15,8 +15,8 @@ jobs:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
         - docker build -t snips-hassio .
         - docker images
-        - docker tag snips-hassio clemtal/snips-hassio:1.4
-        - docker push clemtal/snips-hassio:1.4
+        - docker tag snips-hassio clemtal/snips-hassio:1.5
+        - docker push clemtal/snips-hassio:1.5
         - docker tag snips-hassio clemtal/snips-hassio
         - docker push clemtal/snips-hassio
     
