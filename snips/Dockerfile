@@ -13,18 +13,17 @@ COPY run-ssh.sh /
 RUN apt update \
     && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server
 
-RUN rm -rf /var/lib/apt/lists/*
-
-RUN mkdir -p /var/run/sshd
-RUN chmod 0755 /var/run/sshd
+RUN rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /var/run/sshd \
+    && chmod a+x /var/run/sshd
 
 ADD sshd_config /etc/ssh/sshd_config
 
 RUN mkdir -p /data /data/debian-base /data/debian-base/log
 
 
-RUN bash -c 'echo "deb https://raspbian.snips.ai/stretch stable main" > /etc/apt/sources.list.d/snips.list'
-RUN apt-key adv --keyserver gpg.mozilla.org --recv-keys D4F50CDCA10A2849; 
+RUN bash -c 'echo "deb https://raspbian.snips.ai/stretch stable main" > /etc/apt/sources.list.d/snips.list' \
+    && apt-key adv --keyserver gpg.mozilla.org --recv-keys D4F50CDCA10A2849; 
 
 
 RUN apt-get update \
