@@ -7,7 +7,9 @@
   "arch": ["armhf"],
   "startup": "application",
   "boot": "auto",
+  "host_network" true,
   "map": ["share"],
+
   "tmpfs": "size=10m",
   "audio": true,
   "services": ["mqtt:need"],
