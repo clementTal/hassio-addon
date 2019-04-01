@@ -1,0 +1,6 @@
+{
+  "build_from": {
+    "armhf": "resin/rpi-raspbian",
+    "amd64": "homeassistant/amd64-base-ubuntu:16.04"
+  }
+}

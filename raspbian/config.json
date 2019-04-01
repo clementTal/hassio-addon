@@ -1,0 +1,34 @@
+{
+  "name": "rasbian with ssh",
+  "version": "1.5",
+  "slug": "rasbian-ssh",
+  "description": "clean rasbian wirth ssh config",
+  "url": "https://github.com/clementTal/clem-hassio-addon/tree/master/rasbian",
+  "arch": ["armhf"],
+  "startup": "application",
+  "boot": "auto",
+  "host_network": true,
+  "map": ["share"],
+  "tmpfs": "size=10m",
+  "audio": true,
+  "services": ["mqtt:need"],
+  "homeassistant_api": true,
+  "ports": {
+    "22/tcp": 22
+  },
+  "options": {
+    "ssh": {
+      "enabled": true,
+      "login": "root",
+      "password": "password"
+    }
+  },
+  "schema": {
+    "ssh": {
+      "enabled": "bool",
+      "login": "str",
+      "password": "str"
+    }
+  },
+  "image": "clemtal/rasbian-ssh"
+}
