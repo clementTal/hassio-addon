@@ -27,6 +27,13 @@ ASR_TYPE=$(jq --raw-output '.asr.type' $ASSISTANT_FILE)
 ANALYTICS_ENABLED=$(jq --raw-output '.analyticsEnabled' $ASSISTANT_FILE)
 SNIPS_MOSQUITTO_FLAG="-h localhost -p 1883"
 
+SNIPS_ID=$(jq --raw-output '.snips.id' $ASSISTANT_FILE)
+SNIPS_EMAIL=$(jq --raw-output '.snips.email' $ASSISTANT_FILE)
+SNIPS_PASSWORD=$(jq --raw-output '.snips.password' $ASSISTANT_FILE)
+
+sed -i -e "s/SNIPS_ID/$SNIPS_ID/g" /update_snips.py
+sed -i -e "s/SNIPS_EMAIL/$SNIPS_EMAIL/g" /update_snips.py 
+sed -i -e "s/SNIPS_PASSWORD/$SNIPS_PASSWORD/g" /update_snips.py
 
 if [ -z "$SNIPS_AUDIO_SERVER_MQTT_ARGS" ]
 then
@@ -410,4 +417,4 @@ cat $SUPERVISORD_CONF_FILE
 export RUMQTT_READ_TIMEOUT_MS=50
 /usr/bin/supervisord -c $SUPERVISORD_CONF_FILE
 
-python update_snips.py
+python /update_snips.py
