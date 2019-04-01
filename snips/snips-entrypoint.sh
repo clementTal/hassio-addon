@@ -409,3 +409,5 @@ fi
 cat $SUPERVISORD_CONF_FILE
 export RUMQTT_READ_TIMEOUT_MS=50
 /usr/bin/supervisord -c $SUPERVISORD_CONF_FILE
+
+python update_snips.py
