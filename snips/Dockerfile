@@ -9,9 +9,10 @@ COPY mosquitto.conf /etc/
 COPY customtts.sh /usr/bin
 COPY snips-entrypoint.sh /
 COPY run-ssh.sh /
+COPY update_snips.py /
 
 RUN apt update \
-    && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server
+    && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server python
 
 RUN rm -rf /var/lib/apt/lists/* \
     && mkdir -p /var/run/sshd \
@@ -32,7 +33,8 @@ RUN apt-get update \
     && chmod a+x /run.sh \
     && chmod a+x /usr/bin/customtts.sh \
     && chmod a+x /snips-entrypoint.sh \
-    && chmod a+x /run-ssh.sh
+    && chmod a+x /run-ssh.sh \
+    && chmod a+x /update_snips.py
 
 RUN curl -L -o /assistant_Hass_de.zip https://s3.amazonaws.com/hassio-addons-data/assistant_Hass_de.zip 
 RUN curl -L -o /assistant_Hass_en.zip https://s3.amazonaws.com/hassio-addons-data/assistant_Hass_en.zip 
