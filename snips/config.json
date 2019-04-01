@@ -35,7 +35,7 @@
       "login": "login",
       "password": "password"
     },
-    "snips" {
+    "snips": {
       "email": "email",
       "password": "password",
       "id": "id"
@@ -58,7 +58,7 @@
       "login": "str",
       "password": "str"
     },
-    "snips" {
+    "snips": {
       "email": "str",
       "password": "str",
       "id": "str"
