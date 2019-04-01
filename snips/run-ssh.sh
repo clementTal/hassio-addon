@@ -4,8 +4,8 @@ SSH_ENABLED=$(jq --raw-output '.ssh.enabled' $CONFIG_PATH)
 SSH_LOGIN=$(jq --raw-output '.ssh.login' $CONFIG_PATH)
 SSH_PASSWORD=$(jq --raw-output '.ssh.password' $CONFIG_PATH)
 
-SUPERVISORD_LOGIN$(jq --raw-output '.supervisord.login' $CONFIG_PATH)
-SUPERVISORD_PASSWORD$(jq --raw-output '.supervisord.password' $CONFIG_PATH)
+SUPERVISORD_LOGIN=$(jq --raw-output '.supervisord.login' $CONFIG_PATH)
+SUPERVISORD_PASSWORD=$(jq --raw-output '.supervisord.password' $CONFIG_PATH)
 
 SUPERVISORD_CONF_FILE="/etc/supervisor/conf.d/supervisord.conf"
 
@@ -29,7 +29,7 @@ nodaemon=true
 [inet_http_server]
 port      = 172.0.0.1:9001
 username  = $SUPERVISORD_LOGIN
-password  = SUPERVISORD_PASSWORD
+password  = $SUPERVISORD_PASSWORD
 
 EOT
 
