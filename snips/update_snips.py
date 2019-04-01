@@ -10,7 +10,7 @@ EMAIL = 'SNIPS_EMAIL'
 PASSWORD = 'SNIPS_PASSWORD'
 
 
-HOME_DIR = "/home/pi"
+HOME_DIR = "/root/pi/snips"
 SNIPS_CACHE_DIR_NAME = ".snips"
 SNIPS_CACHE_DIR = os.path.join(HOME_DIR, SNIPS_CACHE_DIR_NAME)
 SNIPS_CONFIG_PATH="/usr/share/snips"
