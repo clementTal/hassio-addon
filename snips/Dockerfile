@@ -11,7 +11,7 @@ COPY snips-entrypoint.sh /
 COPY run-ssh.sh /
 
 RUN apt update \
-    && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server selinux-basic auditd
+    && apt-get install -y dirmngr apt-utils apt-transport-https jq unzip supervisor mpg123 curl tzdata python-pip git openssh-server
 
 RUN rm -rf /var/lib/apt/lists/* \
     && mkdir -p /var/run/sshd \

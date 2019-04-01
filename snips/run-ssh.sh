@@ -27,9 +27,9 @@ cat <<EOT > $SUPERVISORD_CONF_FILE
 nodaemon=true
 
 [inet_http_server]
-port      = :9001
-username  = "$SUPERVISORD_LOGIN"
-password  = "$SUPERVISORD_PASSWORD"
+port      = 172.0.0.1:9001
+username  = $SUPERVISORD_LOGIN
+password  = SUPERVISORD_PASSWORD
 
 EOT
 
