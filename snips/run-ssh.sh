@@ -46,5 +46,3 @@ EOT
 else
     echo "SSH is disabled"
 fi
-
-selinux-activate
