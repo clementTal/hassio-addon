@@ -26,12 +26,14 @@ cat <<EOT > $SUPERVISORD_CONF_FILE
 [supervisord]
 nodaemon=true
 
-[inet_http_server]
-port      = 172.0.0.1:9001
-username  = $SUPERVISORD_LOGIN
-password  = $SUPERVISORD_PASSWORD
+
 
 EOT
+
+#[inet_http_server]
+#port      = 172.0.0.1:9001
+#username  = $SUPERVISORD_LOGIN
+#password  = $SUPERVISORD_PASSWORD
 
 if [ "${SSH_ENABLED}" = true ]
 then
