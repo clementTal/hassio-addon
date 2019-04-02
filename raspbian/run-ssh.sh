@@ -12,4 +12,4 @@ echo "==================================="
 echo "SSH config: $SSH_LOGIN:$SSH_PASSWORD"
 echo "$SSH_LOGIN:$SSH_PASSWORD" | chpasswd
 
-sshd -D -ddd -e
+/usr/sbin/sshd -D -ddd -e
