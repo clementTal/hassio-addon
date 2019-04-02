@@ -3,8 +3,7 @@ FROM raspbian/stretch
 
 # Copy data
 COPY run-ssh.sh /
-RUN apt update \
-    && apt-get install -y apt-utils apt-transport-https jq unzip python-pip
+RUN apt-get install -y apt-utils apt-transport-https jq unzip python-pip openssh-server
 
 RUN mkdir -p /var/run/sshd \
     && chmod a+x /var/run/sshd \
