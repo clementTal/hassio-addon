@@ -1,10 +1,10 @@
 env:
   matrix:  
     - NAME=snips-hassio
-      VERSION=1.5
+      VERSION=$(node -p require('./snips/config.json').version)
       BASE_DIR=snips
     - NAME=rasbian-ssh
-      VERSION=1.1
+      VERSION=$(node -p require('./raspbian/config.json').version)
       BASE_DIR=raspbian
 
 sudo: required
