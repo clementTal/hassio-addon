@@ -1,6 +1,6 @@
 {
   "name": "rasbian with ssh",
-  "version": "1.0",
+  "version": "1.1",
   "slug": "rasbian-ssh",
   "description": "clean rasbian wirth ssh config",
   "url": "https://github.com/clementTal/clem-hassio-addon/tree/master/rasbian",
